@@ -7,6 +7,6 @@ public class Bolt extends Consignment {
 
     @Override
     public String toString() {
-        return "Bolt{} " + super.toString();
+        return "Bolt";
     }
 }

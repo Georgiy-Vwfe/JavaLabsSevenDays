@@ -9,8 +9,6 @@ public abstract class Consignment {
 
     @Override
     public String toString() {
-        return "Consignment{" +
-                "weight=" + weight +
-                '}';
+        return "";
     }
 }

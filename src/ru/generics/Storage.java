@@ -16,18 +16,14 @@ public class Storage<C extends Consignment> {
     }
 
     public void transfer(Storage<C> to, int quantity) {
-        if (consignment.equals(to.consignment)) {
-            return;
-        } else {
-            allMass += quantity;
-            to.allMass -= quantity;
-        }
+        allMass += quantity;
+        to.allMass -= quantity;
     }
 
     @Override
     public String toString() {
-        return "consignment=" + consignment +
-                "\nallMass=" + allMass;
+        return "consignment: " + consignment +
+                "\nallMass: " + allMass;
     }
 }
 

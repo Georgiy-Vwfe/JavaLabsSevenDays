@@ -7,6 +7,6 @@ public class Dumbbell extends Consignment {
 
     @Override
     public String toString() {
-        return "Dumbbell{} " + super.toString();
+        return "Dumbbell";
     }
 }
