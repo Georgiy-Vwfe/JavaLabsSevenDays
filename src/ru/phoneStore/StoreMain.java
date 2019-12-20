@@ -1,7 +1,6 @@
 package ru.phoneStore;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static ru.phoneStore.StoreInfo.startupStore;
 
