@@ -3,11 +3,13 @@ package ru.phoneStore;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import static ru.phoneStore.StoreMain.*;
 
 public class StoreInfo {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private ArrayList<Phone> list = new ArrayList<>();
     private String name;
     private String color;
     private int price;
@@ -98,7 +100,7 @@ public class StoreInfo {
         startupStore();
     }
 
-    private void sale() throws IOException {
+    private void buy() throws IOException {
         boolean hasPhone = false;
         int index = 0;
 
@@ -109,7 +111,7 @@ public class StoreInfo {
             if (list.get(i).name.equals(currName) && list.get(i).color.equals(currColor)) {
                 hasPhone = true;
                 index = i;
-                purchaseSum += list.get(i).amount * list.get(i).price;
+                //purchaseSum += list.get(i).amount * list.get(i).price;
                 break;
             }
         }
@@ -119,9 +121,10 @@ public class StoreInfo {
                 list.remove(index);
             }
         } else {
-            System.out.println("Такого телефона нет,введите заново");
-            sale();
+            System.out.println("Такого телефона нет, введите заново");
+            buy();
         }
+        purchaseSum += list.get(index).amount * list.get(index).price;
         startupStore();
     }
 
@@ -140,22 +143,25 @@ public class StoreInfo {
 
     public static void startupStore() throws IOException {
         try {
-            System.out.print("|New product|-|Sale|-|Store|-|Sale Report|-|Quit|-" + '\n' + "Введите запрос: ");
+            System.out.print("|New product|-|Buy|-|Storage|-|Sale report|-|Quit|-" + '\n' + "Введите запрос: ");
             String method = reader.readLine();
             switch (method) {
                 case "New product":
                     store.newProduct(new Phone(store.setName(), store.setColor(), store.setPrice(), store.setAmount()));
                     store.rePurchase();
                     break;
+                case "Buy":
+                    store.buy();
+                    break;
+                case "Storage":
+                    store.storage();
                 case "Sale report":
                     store.saleReport();
                     break;
-                case "Sale":
-                    store.sale();
-                    break;
-                case "Store":
-                    store.storage();
                 case "Quit":
+                    break;
+                default:
+                    System.out.println("Неверная команда, выход");
                     break;
             }
         } catch (IllegalArgumentException a) {
